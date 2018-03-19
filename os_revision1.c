@@ -9,7 +9,6 @@ Write a program to implement such an algorithm.
 // for non-premptive systems Waiting Time = Start Time - Arrival Time
 
 #include<stdio.h>
-#include<unistd.h>
 #include <stdlib.h>
 int main()
 {

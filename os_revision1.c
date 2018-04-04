@@ -69,6 +69,63 @@ int main()
     printf("\t\t\t|  P[%ld]   |       %ld      |     %ld      |\n",process[i],arrivalTime[i],burstTime[i]);
   }
     printf("\t\t\t---------------------------------------\n");
+  /*Arranging the table according to Burst time,
+Execution time and Arrival Time
+Arrival time <= Execution time
+*/
+
+
+  long int k = 1;
+  long int b_time = 0;
+  for(j=0;j<n;j++)
+  {
+    b_time = b_time + burstTime[j];
+    min = burstTime[k];
+
+    for(i=k;i<n;i++)
+    {
+      if((b_time >= arrivalTime[i])&&(burstTime[i]<min))
+      {
+        temp = process[k];
+        process[k] = process[i];
+        process[i] = temp;
+
+        temp = arrivalTime[k];
+        arrivalTime[k] = arrivalTime[i];
+        arrivalTime[i] = temp;
+
+        temp = burstTime[k];
+        burstTime[k] = burstTime[i];
+        burstTime[i] = temp;
+      }
+    }
+    k++;
+  }
+  waitingTime[0] = 0;
+  for(i=1;i<n;i++)
+  {
+    sum += burstTime[i-1];
+    waitingTime[i] = sum - arrivalTime[i];
+    wait_final += waitingTime[i]; 
+  }
+
+  for(i=0;i<n;i++)
+  {
+    sum2 += burstTime[i];
+    turnaroundTime[i] = sum2 - arrivalTime[i];
+    turnaround_final += turnaroundTime[i];
+  }
+
+printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
+  printf("\t\t\t-----------------------------------------------------------------------------\n");
+  printf("\t\t\t| Process | Arrival Time | Burst Time |  Waiting Time  |  Turn Around Time  |\n");
+  printf("\t\t\t-----------------------------------------------------------------------------\n");
+  for(i=0;i<n;i++)
+  {
+    printf("\t\t\t|  P[%ld]   |       %ld      |     %ld      |        %ld       |         %ld          |\n",process[i],arrivalTime[i],burstTime[i],waitingTime[i],turnaroundTime[i]);
+  }
+    printf("\t\t\t-----------------------------------------------------------------------------\n");
+
 
 
   

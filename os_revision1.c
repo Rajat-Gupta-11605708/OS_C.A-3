@@ -1,13 +1,3 @@
-/*
-Consider a scheduling approach which is non pre-emptive similar to shortest job next in nature.
-The priority of each job is dependent on its estimated run time, and also the amount of time it has spent waiting.
-Jobs gain higher priority the longer they wait, which prevents indefinite postponement.
-The jobs that have spent a long time waiting compete against those estimated to have short run times.
-The priority can be computed as : Priority = 1+ Waiting time / Estimated run time
-Write a program to implement such an algorithm.
-*/
-// for non-premptive systems Waiting Time = Start Time - Arrival Time
-
 #include<stdio.h>
 #include<unistd.h>
 #include <stdlib.h>
@@ -127,6 +117,32 @@ printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
     printf("\t\t\t-----------------------------------------------------------------------------\n");
 
 
+  /*Now we have to prioritize the processes according to the formulae
+      Priority = 1+ Waiting time / Estimated run time
+  */
+ 
+  
+  completionTime[0] = burstTime[0];
+  for(i=1;i<n;i++)
+  {
+    completionTime[i] = completionTime[i-1] + burstTime[i];
+  }
+
+  for(i=0;i<n;i++)
+  {
+    priority[i] = 1+waitingTime[i]/completionTime[i];
+  }
+
+  printf("\n\n\t\t\t -------------- Final Values are --------------\n\n");
+  printf("\t\t\t-----------------------------------------------------------------------------\n");
+  printf("\t\t\t| Process | Arrival Time | Burst Time |  Waiting Time  |  Turn Around Time  |\n");
+  printf("\t\t\t-----------------------------------------------------------------------------\n");
+  printf("\t\t\t|  P[%ld]   |       %ld      |     %ld      |        %ld       |         %ld          |\n",process[0],arrivalTime[0],burstTime[0],waitingTime[0],turnaroundTime[0]);
+  for(i=n-1;i>0;i--)
+  {
+    printf("\t\t\t|  P[%ld]   |       %ld      |     %ld      |        %ld       |         %ld          |\n",process[i],arrivalTime[i],burstTime[i],waitingTime[i],turnaroundTime[i]);
+  }
+    printf("\t\t\t-----------------------------------------------------------------------------\n");
 
   
   

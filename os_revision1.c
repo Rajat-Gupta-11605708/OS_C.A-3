@@ -4,10 +4,11 @@
 int main()
 {
   printf("\t\t\t----------------------- Scheduling -----------------------\n\n\n\n");
-  long int n,i=0,j=0;
+  long int n,i=0,j=0,min,sum=0,sum2=0,wait_final, turnaround_final, wait_avg, turnaround_avg;
   printf("Enter Number of Processes : ");
   scanf("%ld",&n );
-  long int burstTime[n],arrivalTime[n],priority[n],waitingTime[n],turnaroundTime[n], process[n], temp; 
+  long int burstTime[n],arrivalTime[n],waitingTime[n],turnaroundTime[n], process[n], temp, completionTime[n]; 
+  double priority[n],avg_waiting,avg_turnaround;
   for(i=0;i<n;i++)
   {
     printf("\nEnter Burst Time for Process [%d] : ", i+1 );
@@ -27,8 +28,8 @@ int main()
   }
     printf("\t\t\t---------------------------------------\n");
 
-  //Sorting processes according to arrivalTime
-  printf("\n\n\t\t\t-------- Sorting processes according to Arrival Time --------\n");
+
+  printf("\n\n\t\t\t-------- Sorting Processes according to Arrivaltime --------\n");
 
   for(i=0;i<n;i++)
   {
@@ -36,17 +37,19 @@ int main()
     {
       if(arrivalTime[i]<arrivalTime[j])
       {
-        temp = process[j];
-        process[j] = process[i];
-        process[i] = temp;
-
-        temp = arrivalTime[j];
-        arrivalTime[j] = arrivalTime[i];
-        arrivalTime[i] = temp;
-
+        
         temp = burstTime[j];
         burstTime[j] = burstTime[i];
         burstTime [i] = temp;
+	
+	      temp = process[j];
+        process[j] = process[i];
+        process[i] = temp;
+
+	      temp = arrivalTime[j];
+        arrivalTime[j] = arrivalTime[i];
+        arrivalTime[i] = temp;
+      
       }
     }
   }
@@ -59,7 +62,9 @@ int main()
     printf("\t\t\t|  P[%ld]   |       %ld      |     %ld      |\n",process[i],arrivalTime[i],burstTime[i]);
   }
     printf("\t\t\t---------------------------------------\n");
-  /*Arranging the table according to Burst time,
+
+
+/*Arranging the table according to Burst time,
 Execution time and Arrival Time
 Arrival time <= Execution time
 */
@@ -76,17 +81,17 @@ Arrival time <= Execution time
     {
       if((b_time >= arrivalTime[i])&&(burstTime[i]<min))
       {
-        temp = process[k];
-        process[k] = process[i];
-        process[i] = temp;
+        temp = burstTime[k];
+        burstTime[k] = burstTime[i];
+        burstTime[i] = temp;
 
         temp = arrivalTime[k];
         arrivalTime[k] = arrivalTime[i];
         arrivalTime[i] = temp;
 
-        temp = burstTime[k];
-        burstTime[k] = burstTime[i];
-        burstTime[i] = temp;
+        temp = process[k];
+        process[k] = process[i];
+        process[i] = temp;
       }
     }
     k++;
@@ -117,6 +122,7 @@ printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
     printf("\t\t\t-----------------------------------------------------------------------------\n");
 
 
+
   /*Now we have to prioritize the processes according to the formulae
       Priority = 1+ Waiting time / Estimated run time
   */
@@ -144,7 +150,7 @@ printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
   }
     printf("\t\t\t-----------------------------------------------------------------------------\n");
 
-  
-  
+
+
   return 0;
 }

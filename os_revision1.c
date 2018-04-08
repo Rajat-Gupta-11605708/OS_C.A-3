@@ -1,6 +1,4 @@
 #include<stdio.h>
-#include<unistd.h>
-#include <stdlib.h>
 int main()
 {
   printf("\t\t\t----------------------- Scheduling -----------------------\n\n\n\n");
@@ -149,8 +147,6 @@ printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
     printf("\t\t\t|  P[%ld]   |       %ld      |     %ld      |        %ld       |         %ld          |\n",process[i],arrivalTime[i],burstTime[i],waitingTime[i],turnaroundTime[i]);
   }
     printf("\t\t\t-----------------------------------------------------------------------------\n");
-
-
 
   return 0;
 }

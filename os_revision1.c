@@ -2,17 +2,16 @@
 int main()
 {
   printf("\t\t\t----------------------- Scheduling -----------------------\n\n\n\n");
-  long int n,i=0,j=0,min,sum=0,sum2=0,wait_final, turnaround_final, wait_avg, turnaround_avg;
+  long int n,i=0,j=0;
   printf("Enter Number of Processes : ");
-  scanf("%ld",&n );
-  long int burstTime[n],arrivalTime[n],waitingTime[n],turnaroundTime[n], process[n], temp, completionTime[n]; 
-  double priority[n],avg_waiting,avg_turnaround;
+  scanf("%ld",&n ); 
+  double priority[n],avg_waiting,avg_turnaround,burstTime[n],arrivalTime[n],waitingTime[n],turnaroundTime[n], process[n], temp, completionTime[n],min,sum=0,sum2=0,wait_final, turnaround_final, wait_avg, turnaround_avg;
   for(i=0;i<n;i++)
   {
     printf("\nEnter Burst Time for Process [%d] : ", i+1 );
-    scanf("%ld", &burstTime[i]);
+    scanf("%lf", &burstTime[i]);
     printf("Enter Arrival Time for Process [%d] : ", i+1 );
-    scanf("%ld", &arrivalTime[i] );
+    scanf("%lf", &arrivalTime[i] );
     process[i]=i+1;
   }
 
@@ -22,7 +21,7 @@ int main()
   printf("\t\t\t---------------------------------------\n");
   for(i=0;i<n;i++)
   {
-    printf("\t\t\t|  P[%ld]   |       %ld      |     %ld      |\n",process[i],arrivalTime[i],burstTime[i]);
+    printf("\t\t\t|  P[%0.0lf]   |       %0.0lf      |     %0.0lf      |\n",process[i],arrivalTime[i],burstTime[i]);
   }
     printf("\t\t\t---------------------------------------\n");
 
@@ -57,7 +56,7 @@ int main()
   printf("\t\t\t---------------------------------------\n");
   for(i=0;i<n;i++)
   {
-    printf("\t\t\t|  P[%ld]   |       %ld      |     %ld      |\n",process[i],arrivalTime[i],burstTime[i]);
+    printf("\t\t\t|  P[%0.0lf]   |       %0.0lf      |     %0.0lf      |\n",process[i],arrivalTime[i],burstTime[i]);
   }
     printf("\t\t\t---------------------------------------\n");
 
@@ -69,7 +68,7 @@ Arrival time <= Execution time
 
 
   long int k = 1;
-  long int b_time = 0;
+  double b_time = 0;
   for(j=0;j<n;j++)
   {
     b_time = b_time + burstTime[j];
@@ -115,7 +114,7 @@ printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
   printf("\t\t\t-----------------------------------------------------------------------------\n");
   for(i=0;i<n;i++)
   {
-    printf("\t\t\t|  P[%ld]   |       %ld      |     %ld      |        %ld       |         %ld          |\n",process[i],arrivalTime[i],burstTime[i],waitingTime[i],turnaroundTime[i]);
+    printf("\t\t\t|  P[%0.0lf]   |       %0.0lf      |     %0.0lf      |        %0.0lf       |         %0.0lf          |\n",process[i],arrivalTime[i],burstTime[i],waitingTime[i],turnaroundTime[i]);
   }
     printf("\t\t\t-----------------------------------------------------------------------------\n");
 
@@ -135,18 +134,21 @@ printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
   for(i=0;i<n;i++)
   {
     priority[i] = 1+waitingTime[i]/completionTime[i];
+    printf("%lf\n",priority[i]);
   }
 
   printf("\n\n\t\t\t -------------- Final Values are --------------\n\n");
   printf("\t\t\t-----------------------------------------------------------------------------\n");
   printf("\t\t\t| Process | Arrival Time | Burst Time |  Waiting Time  |  Turn Around Time  |\n");
   printf("\t\t\t-----------------------------------------------------------------------------\n");
-  printf("\t\t\t|  P[%ld]   |       %ld      |     %ld      |        %ld       |         %ld          |\n",process[0],arrivalTime[0],burstTime[0],waitingTime[0],turnaroundTime[0]);
+  printf("\t\t\t|  P[%0.0lf]   |       %0.0lf      |     %0.0lf      |        %0.0lf       |         %0.0lf          |\n",process[0],arrivalTime[0],burstTime[0],waitingTime[0],turnaroundTime[0]);
   for(i=n-1;i>0;i--)
   {
-    printf("\t\t\t|  P[%ld]   |       %ld      |     %ld      |        %ld       |         %ld          |\n",process[i],arrivalTime[i],burstTime[i],waitingTime[i],turnaroundTime[i]);
+    printf("\t\t\t|  P[%0.0lf]   |       %0.0lf      |     %0.0lf      |        %0.0lf       |         %0.0lf          |\n",process[i],arrivalTime[i],burstTime[i],waitingTime[i],turnaroundTime[i]);
   }
     printf("\t\t\t-----------------------------------------------------------------------------\n");
+
+
 
   return 0;
 }

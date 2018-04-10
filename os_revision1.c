@@ -100,14 +100,14 @@ Arrival time <= Execution time
     waitingTime[i] = sum - arrivalTime[i];
     wait_final += waitingTime[i]; 
   }
-
+  wait_avg = wait_final/n;
   for(i=0;i<n;i++)
   {
     sum2 += burstTime[i];
     turnaroundTime[i] = sum2 - arrivalTime[i];
     turnaround_final += turnaroundTime[i];
   }
-
+  turnaround_avg=turnaround_final/n;
 printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
   printf("\t\t\t-----------------------------------------------------------------------------\n");
   printf("\t\t\t| Process | Arrival Time | Burst Time |  Waiting Time  |  Turn Around Time  |\n");
@@ -137,6 +137,7 @@ printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
     printf("%lf\n",priority[i]);
   }
 
+
   printf("\n\n\t\t\t -------------- Final Values are --------------\n\n");
   printf("\t\t\t-----------------------------------------------------------------------------\n");
   printf("\t\t\t| Process | Arrival Time | Burst Time |  Waiting Time  |  Turn Around Time  |\n");
@@ -148,7 +149,7 @@ printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
   }
     printf("\t\t\t-----------------------------------------------------------------------------\n");
 
-
-
+  printf("\n\n\n\t\t\tAverage Turn Around Time : %lf",turnaround_avg);
+  printf("\n\t\t\tAverage Waiting Time     : %lf\n\n",wait_avg);
   return 0;
 }

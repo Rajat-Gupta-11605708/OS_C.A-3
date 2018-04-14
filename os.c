@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<conio.h>
 int main()
 {
   printf("\t\t\t----------------------- Scheduling -----------------------\n\n\n\n");
@@ -151,5 +152,7 @@ printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
 
   printf("\n\n\n\t\t\tAverage Turn Around Time : %lf",turnaround_avg);
   printf("\n\t\t\tAverage Waiting Time     : %lf\n\n",wait_avg);
+	
+  getch();
   return 0;
 }
